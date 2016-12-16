@@ -1,0 +1,40 @@
+    <script type="text/javascript" src="./doT.min.js"></script>
+    <script type="text/template" id="doT-Template">
+        <div>{{=fnLanSwitch( '你好！世界。' )}}</div>
+    </script>
+    <div id="doT-Html"></div>
+    <script type="text/javascript">
+        localStorage.setItem( 'fnLanSwitch', 'en-us' );
+        document.querySelector( '#doT-Html' ).innerHTML = doT.template( document.querySelector( '#doT-Template' ).innerHTML )();
+
+
+        //fnLanSwitch( '需翻译的字段' )
+        function fnLanSwitch( _txt ){
+            // 为了开发方便，开发时默认字体为中文简体。所以这个键直接使用需要翻译的文字
+            var _JSON = {
+                '你好！世界。': {
+                    'en-us': 'Hello The world.'
+                    // 这里添加更多语言
+                }
+                // 其他文字
+            };
+
+            if( _txt in _JSON ){
+                // 获取当前浏览器语言
+                var _lan = (localStorage.getItem( 'fnLanSwitch' ) || navigator.language || navigator.browserLanguage).toLowerCase();
+
+                if( _lan !== 'zh-cn' ){
+                    // 判断是否有对应的翻译
+                    if( _JSON[ _txt ][ _lan ] ){
+                            return _JSON[ _txt ][ _lan ];
+                    }else{
+                        return _txt;
+                    }
+                }else{
+                    return _txt;
+                }
+            }else{
+                return _txt;
+            }
+        }
+</script>
