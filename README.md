@@ -80,3 +80,5 @@ localstorage.setItem( 'fnLanSwitch', 'en-us' );
                 return fnLanSwitch( _txt );
             };
         }]);
+    
+doT 实例[DEMO](https://github.com/apicloudcom/Demo-LanguageSwitching)
